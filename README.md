@@ -34,4 +34,4 @@ A production-ready Flask application with RESTful API, PostgreSQL database, and 
 ## API Documentation
  - Swagger UI: http://localhost:5000/api/docs
 
- ![CI](https://https://github.com/Barsun/exercise-axa/workflows/CI/badge.svg)
+ ![CI](https://https://github.com/Barsun/exercise-axa/workflows/ci.yml/badge.svg)
