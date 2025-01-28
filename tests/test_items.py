@@ -1,7 +1,6 @@
 import pytest
 from app import create_app
 from app.database import db
-from app.database.models import Item
 
 @pytest.fixture
 def app():

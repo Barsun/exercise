@@ -22,12 +22,16 @@ A production-ready Flask application with RESTful API, PostgreSQL database, and 
     ```
 3. Start the services:
    ```bash
-   docker-compose up --build
+   docker compose up --build
    ```
 4. Access the services:
     - Flask app: http://localhost:5000
+
+5. Observability
     - Prometheus: http://localhost:9090
     - Grafana: http://localhost:3000
 
 ## API Documentation
  - Swagger UI: http://localhost:5000/api/docs
+
+ ![CI](https://https://github.com/Barsun/exercise-axa/workflows/CI/badge.svg)
