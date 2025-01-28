@@ -3,3 +3,4 @@ pytest
 python-dotenv
 prometheus-client
 flask-limiter
+flask_sqlalchemy
