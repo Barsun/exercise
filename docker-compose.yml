@@ -4,15 +4,22 @@ services:
   app:
     build: .
     ports:
-      - "5000:5000"  
-      - "8000:8000"  # Prometheus metrics
+      - "5000:5000"
+      - "8000:8000"
     environment:
-      - DATABASE_URL=sqlite:////app/mydatabase.db
+      - DATABASE_URL=postgresql://user:password@db:5432/mydatabase
       - SECRET_KEY=your_secret_key
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydatabase
     volumes:
-      - .:/app
-    networks:
-      - observability
+      - postgres_data:/var/lib/postgresql/data
 
   prometheus:
     image: prom/prometheus
@@ -20,8 +27,6 @@ services:
       - "9090:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    networks:
-      - observability
 
   grafana:
     image: grafana/grafana
@@ -29,11 +34,7 @@ services:
       - "3000:3000"
     volumes:
       - grafana-storage:/var/lib/grafana
-    networks:
-      - observability
 
 volumes:
+  postgres_data:
   grafana-storage:
-
-networks:
-  observability:
