@@ -14,7 +14,7 @@ A production-ready Flask application with RESTful API, PostgreSQL database, and 
 ## Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/myapp.git
+   git clone https://github.com/Barsun/exercise-axa.git
    cd myapp
    ```
 2. Set up environment variables in .env
