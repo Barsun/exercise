@@ -1,5 +1,5 @@
 # Exercise AXA
-
+ ![CI](https://github.com/Barsun/exercise-axa/actions/workflows/ci.yml/badge.svg)
 A production-ready Flask application with RESTful API, PostgreSQL database, and observability (Prometheus + Grafana).
 
 ## Features
@@ -33,5 +33,3 @@ A production-ready Flask application with RESTful API, PostgreSQL database, and 
 
 ## API Documentation
  - Swagger UI: http://localhost:5000/api/docs
-
- ![CI](https://github.com/Barsun/exercise-axa/actions/workflows/ci.yml/badge.svg)
