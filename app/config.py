@@ -9,8 +9,6 @@ class Config:
     DEBUG = os.getenv("DEBUG", "False").lower() == "true"
     LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    # Default database URI (overwritten during tests)
-    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
 
 class TestConfig(Config):
     TESTING = True
