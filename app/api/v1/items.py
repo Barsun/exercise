@@ -2,8 +2,35 @@ from flask import Blueprint, request, jsonify
 from app.database.models import Item
 from app.database import db
 from app.utils.errors import handle_exception
+from prometheus_client import Counter, Histogram
+import time  
+
+# Define Prometheus metrics
+REQUEST_COUNT = Counter(
+    'http_requests_total',
+    'Total HTTP Requests',
+    ['method', 'endpoint', 'status_code']
+)
+
+REQUEST_LATENCY = Histogram(
+    'http_request_duration_seconds',
+    'HTTP Request Latency',
+    ['method', 'endpoint']
+)
 
 items_blueprint = Blueprint("items", __name__)
+
+# Track HTTP requests and latency
+@items_blueprint.before_request
+def before_request():
+    request.start_time = time.time()  # Record the start time of the request
+
+@items_blueprint.after_request
+def after_request(response):
+    latency = time.time() - request.start_time  # Calculate the latency
+    REQUEST_LATENCY.labels(request.method, request.path).observe(latency)
+    REQUEST_COUNT.labels(request.method, request.path, response.status_code).inc()
+    return response
 
 # Create an item
 @items_blueprint.route("/items", methods=["POST"])

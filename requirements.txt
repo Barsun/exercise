@@ -10,3 +10,5 @@ pytest-flask
 flask-swagger-ui
 marshmallow
 gunicorn
+psycopg2-binary
+prometheus_client

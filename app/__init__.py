@@ -1,4 +1,6 @@
 from flask import Flask
+from prometheus_client import make_wsgi_app
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from app.config import Config
 from app.database import init_db
 from app.api.v1.items import items_blueprint
@@ -28,4 +30,12 @@ def create_app():
     )
     app.register_blueprint(swagger_ui_blueprint, url_prefix=SWAGGER_URL)
 
+    # Add Prometheus metrics endpoint
+    app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {
+        '/metrics': make_wsgi_app()
+    })
+
     return app
+
+# Create the app object
+app = create_app()

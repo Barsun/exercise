@@ -64,3 +64,23 @@ def test_delete_item(client):
     # Verify the deletion
     get_response = client.get(f"/api/v1/items/{item_id}")
     assert get_response.status_code == 404
+
+def test_get_item_non_existent_id(client):
+    # Create an item first
+    create_response = client.post("/api/v1/items", json={"name": "Test Item 1", "description": "Test Description 1"})
+    item_id = create_response.json["id"]
+
+    response = client.get(f"/api/v1/items/non_exitent_id")
+    assert response.status_code == 404
+
+
+def test_get_item_special_characters(client):
+    # Create an item first
+    create_response = client.post("/api/v2/axa", json={"name": "Test Item 1", "description": "Test Description 1"})
+    item_id = create_response.json["id"]
+
+    response = client.get(f"/api/v1/items/^%%%^%£$")
+    assert response.status_code == 404
+
+    response = client.get(f"/api/v1/items/*")
+    assert response.status_code == 404
