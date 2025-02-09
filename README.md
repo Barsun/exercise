@@ -27,11 +27,11 @@ A production-ready Flask application with RESTful API, PostgreSQL database, and 
    docker compose up --build
    ```
 4. Access the services:
-    - Flask app: http://localhost:5000
+    - Flask app: http://localhost:5050
 
 5. Observability
     - Prometheus: http://localhost:9090
     - Grafana: http://localhost:3000
 
 ## API Documentation
- - Swagger UI: http://localhost:5000/api/docs
+ - Swagger UI: http://localhost:5050/api/docs

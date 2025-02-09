@@ -16,7 +16,7 @@ ENV PATH=/root/.local/bin:$PATH
 ENV FLASK_APP=app:app
 ENV FLASK_ENV=production
 
-EXPOSE 5000
+EXPOSE 5050
 EXPOSE 8000
 
 CMD ["gunicorn", "--bind", "0.0.0.0:5050", "--workers", "4", "--threads", "2", "app:app"]
